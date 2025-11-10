@@ -1,4 +1,4 @@
-#  ProDev Backend Engineering program.
+# ProDev Backend Engineering program
 
 ## Major learnings
 
