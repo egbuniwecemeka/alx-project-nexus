@@ -9,6 +9,7 @@ from .serializers import BookingSerializer
 # Create your views here.
 
 # URL Configuration for Function-Based Views
+# Step 2: Implementing CRUD Operations with Class-Based Views
 @api_view(['GET', 'POST'])
 def booking_list(request):
     if request.method == 'GET':

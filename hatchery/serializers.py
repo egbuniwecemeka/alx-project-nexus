@@ -6,7 +6,7 @@ from .models.booking import Booking
 from .models.message import Message
 from .models.payment import Payment
 from .models.property import Property
-from models.review import Review
+from .models.review import Review
 
 
 class UserSerializer(serializers.ModelSerializer):

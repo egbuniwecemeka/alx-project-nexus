@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import environ
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Initialize 
 env = environ.Env(
@@ -32,14 +33,14 @@ env = environ.Env(
 )
 
 # Read the .env file
-environ.ENV.read_env()
+environ.Env.read_env()
 
 # Get settings from the environment
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY=env('SECRET_KEY')
 DEBUG=env('DEBUG')
-DATABASE= {'default': env.db()}
-CACHES={'default': env.cache()}
+DATABASES= {'default': env.db()}
+CACHES={'default': env.cache(default='locmemcache://')}
 
 # Custom user model
 AUTH_USER_MODEL = 'hatchery.User'
@@ -55,10 +56,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'hatchery',
     'rest_framework',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -90,11 +93,19 @@ WSGI_APPLICATION = 'ejfarms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+} """
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace with local database connection string
+        default='postgresql://postgres:postgres@localhost:5432/hatchery',
+        conn_max_age=600
+    )
 }
 
 
@@ -132,7 +143,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+if not DEBUG:
+    STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
