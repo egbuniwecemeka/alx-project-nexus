@@ -3,6 +3,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.views import APIView
 from .models.booking import Booking
 from .serializers import BookingSerializer
 
@@ -42,4 +43,8 @@ def booking_details(request, pk):
     elif request.method == 'DELETE':
         booking.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
+
+
+class HomeView(APIView):
+    def get(self, request):
+        return Response({"message": "Welcome to EJ Farms"})
