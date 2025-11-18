@@ -5,5 +5,4 @@ from .views import booking_details, booking_list, HomeView
 urlpatterns = [
     path('', booking_list, name='booking-list'),
     path('<int:pk>', booking_details, name='booking-details'),
-    path('', HomeView.as_view(), name="home")
 ]

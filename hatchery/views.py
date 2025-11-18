@@ -47,4 +47,5 @@ def booking_details(request, pk):
 
 class HomeView(APIView):
     def get(self, request):
-        return Response({"message": "Welcome to EJ Farms"})
+        return render(request, 'hatchery/index.html', {})
+
