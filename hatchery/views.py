@@ -47,5 +47,5 @@ def booking_details(request, pk):
 
 class HomeView(APIView):
     def get(self, request):
-        return render(request, 'hatchery/index.html', {})
+        return render(request, 'homepage/index.html')
 
