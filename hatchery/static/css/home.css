@@ -1,0 +1,38 @@
+/* HERO SECTION */
+.hero {
+    height: 70vh;
+    background-image: url('../images/homepage_banner.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero .overlay {
+    background: rgba(0, 0, 0, 0.55);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* SERVICES */
+.service-box {
+    border-radius: 10px;
+    padding: 20px;
+    transition: 0.3s ease;
+}
+
+.service-box:hover {
+    transform: scale(1.05);
+    background-color: #f8f9fa;
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 60px;
+    padding: 20px;
+    background: #f2f2f2;
+    background-color: red;
+}

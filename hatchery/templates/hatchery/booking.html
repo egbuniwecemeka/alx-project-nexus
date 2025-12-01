@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EJ Farms - Booking</title>
+
+    <!-- Bootstrap (optional) -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'hatchery:home' %}">EJ Farms</a>
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'hatchery:home' %}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'hatchery:booking' %}">Book Now</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5 text-center">
+    <h2>Book Your Broilers Order</h2>
+    <p class="lead">Click the button below to proceed to payment.</p>
+
+    <button id="pay-btn" class="btn btn-success btn-lg">Pay ₦20,000</button>
+</div>
+
+<!-- Stripe script -->
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>const stripe_public_key = "{{ STRIPE_PUBLIC_KEY }}";</script>
+
+<!-- Your custom JS script -->
+<script src="{% static 'js/checkout.js' %}"></script>
+
+</body>
+</html>

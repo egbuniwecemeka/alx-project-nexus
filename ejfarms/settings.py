@@ -44,6 +44,8 @@ DEBUG=env('DEBUG')
 PORT=env('PORT')
 DATABASES= {'default': env.db()}
 CACHES={'default': env.cache(default='locmemcache://')}
+STRIPE_SECRET_KEY=env('STRIPE_SECRET_KEY')
+STRIPE_PUBLIC_KEY=env('STRIPE_PUBLIC_KEY')
 
 # Custom user model
 AUTH_USER_MODEL = 'hatchery.User'
@@ -148,9 +150,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'hatchery' / 'static' # apps static files
-]
+STATICFILES_DIRS = []
 
 # For production on Render
 if not DEBUG:

@@ -1,9 +1,12 @@
 from django.contrib import admin
-from django.urls import path, include
-from .views import booking_details, booking_list, HomeView
+from django.urls import path
+from . import views
+
+
+app_name = 'hatchery'
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
-    path('bookings/', booking_list, name='booking-list'),
-    path('<int:pk>', booking_details, name='booking-details'),
+    path('', views.home, name='home'),
+    path('create-checkout-session/', views.create_checkout_session, name='checkout'),
+    path('booking/', views.booking, name='booking'),
 ]
