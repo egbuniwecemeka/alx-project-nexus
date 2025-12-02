@@ -9,7 +9,9 @@ from django.shortcuts import render
 
 # Homepage view
 def home(request):
-    return render(request, 'hatchery/home.html')
+    return render(request, 'hatchery/home.html', {
+        "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
+    })
 
 # Bookingpage view
 def booking(request):
