@@ -5,17 +5,22 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
-# Homepage view
+# Home page view
 def home(request):
     return render(request, 'hatchery/home.html')
 
-# Bookingpage view
+# Booking page view
 def booking(request):
     return render(request, 'hatchery/booking.html', {
         "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
     })
+
+# Login page view
+def login(request):
+    return render(request, 'hatchery/login.html')
 
 # Payment success view     Implement later
 def success_page(request):
