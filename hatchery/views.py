@@ -9,13 +9,13 @@ from django.shortcuts import render
 
 # Homepage view
 def home(request):
-    return render(request, 'hatchery/home.html', {
-        "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
-    })
+    return render(request, 'hatchery/home.html')
 
 # Bookingpage view
 def booking(request):
-    return render(request, 'hatchery/booking.html')
+    return render(request, 'hatchery/booking.html', {
+        "STRIPE_PUBLIC_KEY": settings.STRIPE_PUBLIC_KEY
+    })
 
 # Payment success view     Implement later
 def success_page(request):
