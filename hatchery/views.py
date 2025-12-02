@@ -4,7 +4,7 @@ import stripe
 from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
-
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 # Homepage view
@@ -27,6 +27,7 @@ def failure_page(request):
 
 # Stripe Checkout Session view
 
+@csrf_exempt
 def create_checkout_session(request):
     try:
         stripe.api_key = settings.STRIPE_SECRET_KEY
