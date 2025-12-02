@@ -46,6 +46,7 @@ DATABASES= {'default': env.db()}
 CACHES={'default': env.cache(default='locmemcache://')}
 STRIPE_SECRET_KEY=env('STRIPE_SECRET_KEY')
 STRIPE_PUBLIC_KEY=env('STRIPE_PUBLIC_KEY')
+print("PUBLIC KEY FROM ENV:", env("STRIPE_PUBLIC_KEY"))
 
 # Custom user model
 AUTH_USER_MODEL = 'hatchery.User'
