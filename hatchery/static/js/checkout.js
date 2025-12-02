@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (payBtn) {
         payBtn.addEventListener("click", function () {
-            fetch("/create-checkout-session/")
+            fetch("/create-checkout-session/", {method: "POST"})
                 .then(res => res.json())
                 .then(data => {
                     const stripe = Stripe(stripe_public_key);
