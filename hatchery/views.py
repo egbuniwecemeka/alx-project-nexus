@@ -24,10 +24,11 @@ def failure_page(request):
     return render(request, 'hatchery/failure.html')
 
 # Stripe Checkout Session view
-stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def create_checkout_session(request):
     try:
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+
         checkout_session = stripe.checkout.Session.create(
         payment_method_types=['card'],
         line_items=[
@@ -46,6 +47,6 @@ def create_checkout_session(request):
         success_url='https://ejfarms.onrender.com/success/',
         cancel_url='https://ejfarms.onrender.com/cancel/'
         )
-        return JsonResponse({id: checkout_session})
+        return JsonResponse({"id": checkout_session.id})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=400)
